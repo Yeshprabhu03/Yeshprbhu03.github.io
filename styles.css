@@ -67,6 +67,13 @@ body {
 .cta-button:hover {
     background-color: #e6e6e6;
 }
+.hero-section {
+    background: linear-gradient(135deg, #0077ff, #00c3ff);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
 
 /* Section Styling */
 section {
