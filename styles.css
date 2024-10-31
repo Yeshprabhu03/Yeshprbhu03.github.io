@@ -1,32 +1,33 @@
-/* Reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: Arial, sans-serif;
     color: #333;
+    line-height: 1.6;
+    background-color: #f4f6f9;
+    padding-top: 60px; /* to avoid content hiding behind navbar */
 }
-/* Nav Section */
+
+/* Navbar Styling */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     background-color: #0077ff;
-    padding: 1rem;
+    padding: 1rem 0;
     text-align: center;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar a {
     color: white;
-    margin: 0 1rem;
+    margin: 0 1.5rem;
     text-decoration: none;
     font-weight: bold;
 }
@@ -45,11 +46,12 @@ body {
     background: linear-gradient(135deg, #0077ff, #00c3ff);
     color: white;
     text-align: center;
+    padding: 2rem;
 }
 
 .hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .cta-button {
@@ -67,75 +69,94 @@ body {
 .cta-button:hover {
     background-color: #e6e6e6;
 }
-.hero-section {
-    background: linear-gradient(135deg, #0077ff, #00c3ff);
-    color: white;
-    padding: 6rem 2rem;
-    text-align: center;
-}
-
 
 /* Section Styling */
 section {
     padding: 4rem 2rem;
+    max-width: 900px;
+    margin: auto;
     text-align: center;
 }
 
-.about-section, .skills-section {
+/* About, Skills, Activities Section */
+.about-section, .skills-section, .activities-section {
     background-color: #f9f9f9;
-}
-
-/* Projects Section */
-.projects-section .project-card {
-    max-width: 600px;
-    margin: 2rem auto;
-    text-align: left;
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
 }
 
-.project-card:hover {
-    transform: translateY(-10px);
-}
-.project-card {
+/* Experience and Projects Cards */
+.job-card, .project-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+.job-card:hover, .project-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.job-card h3, .project-card h3 {
+    color: #0077ff;
+    margin-bottom: 0.5rem;
+}
+
+.job-card ul, .project-card p {
+    text-align: left;
+    margin-top: 1rem;
+    color: #555;
+}
+
+/* Skills Section */
+.skills-section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 1rem;
+}
+
+.skills-section li {
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
 /* Contact Section */
-.contact-section a.download-link {
+.contact-section {
+    background-color: #0077ff;
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.download-link {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
-    color: white;
-    background-color: #0077ff;
+    color: #0077ff;
+    background-color: white;
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
 }
 
-.contact-section a.download-link:hover {
-    background-color: #005bb5;
+.download-link:hover {
+    background-color: #e6e6e6;
+    color: #0077ff;
 }
 
-/* Footer */
 footer {
+    padding: 1.5rem;
     background-color: #333;
     color: white;
-    padding: 1rem;
     text-align: center;
-}
-
-footer a {
-    color: #00c3ff;
-    text-decoration: none;
 }
