@@ -11,17 +11,59 @@ permissions:
   id-token: write
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Create test env file
+      env:
+        FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+        FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+        FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+        FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+        FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+        FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+      run: |
+        echo "REACT_APP_FIREBASE_API_KEY=$FIREBASE_API_KEY" >> .env.test
+        echo "REACT_APP_FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env.test
+        echo "REACT_APP_FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env.test
+        echo "REACT_APP_FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env.test
+        echo "REACT_APP_FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env.test
+        echo "REACT_APP_FIREBASE_APP_ID=$FIREBASE_APP_ID" >> .env.test
+
+    - name: Run Firebase Tests
+      run: |
+        echo "Running Firebase connection tests..."
+        npm run test:firebase
+        if [ $? -eq 0 ]; then
+          echo "✅ Firebase tests passed"
+        else
+          echo "❌ Firebase tests failed"
+          exit 1
+        fi
+
   build-and-deploy:
+    needs: test
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: https://yeshwanthdayananda.github.io
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'npm'
@@ -77,13 +119,18 @@ jobs:
         CI: false
 
     - name: Setup Pages
-      uses: actions/configure-pages@v3
+      uses: actions/configure-pages@v4
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: './build'
 
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v2 
+      uses: actions/deploy-pages@v4
+
+    - name: Verify Firebase Connection
+      run: |
+        echo "Testing Firebase connection..."
+        npm run test:firebase 
