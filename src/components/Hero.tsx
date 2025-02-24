@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const HeroSection = styled.header`
@@ -49,4 +50,18 @@ const CTAButton = styled.a`
     transform: translateY(-2px);
     box-shadow: ${({ theme }) => theme.shadows.hover};
   }
-`; 
+`;
+
+const Hero = (): JSX.Element => {
+  return (
+    <HeroSection id="home">
+      <div>
+        <h1>Yeshwanth Dayananda</h1>
+        <p>Product Manager & Full Stack Developer</p>
+        <CTAButton href="#contact">Get In Touch</CTAButton>
+      </div>
+    </HeroSection>
+  );
+};
+
+export default Hero; 

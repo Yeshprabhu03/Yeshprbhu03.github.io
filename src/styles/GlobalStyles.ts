@@ -1,7 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { Theme } from './theme';
 
-const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
+interface GlobalStylesProps {
+  theme: Theme;
+}
+
+const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
   * {
     margin: 0;
     padding: 0;
@@ -10,10 +14,10 @@ const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
 
   body {
     font-family: 'Inter', sans-serif;
-    background: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    background: ${props => props.theme.colors.background};
+    color: ${props => props.theme.colors.text};
     line-height: 1.6;
-    transition: all ${({ theme }) => theme.transitions.default};
+    transition: all ${props => props.theme.transitions.default};
   }
 
   section {
@@ -23,17 +27,17 @@ const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${props => props.theme.colors.text};
     line-height: 1.2;
   }
 
   a {
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
     text-decoration: none;
-    transition: color ${({ theme }) => theme.transitions.fast};
+    transition: color ${props => props.theme.transitions.fast};
 
     &:hover {
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${props => props.theme.colors.secondary};
     }
   }
 
@@ -41,7 +45,7 @@ const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     cursor: pointer;
     border: none;
     outline: none;
-    transition: all ${({ theme }) => theme.transitions.default};
+    transition: all ${props => props.theme.transitions.default};
   }
 
   /* Animations */
@@ -74,7 +78,7 @@ const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
   }
 
   /* Responsive Design */
-  @media (max-width: ${({ theme }) => theme.breakpoints?.mobile || '768px'}) {
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     section {
       padding: 3rem 1rem;
     }
