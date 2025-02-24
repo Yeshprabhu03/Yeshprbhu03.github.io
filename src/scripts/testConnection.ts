@@ -1,5 +1,5 @@
-import { testFirebaseConnection } from '../utils/firebaseTest.js';
-import dotenv from 'dotenv';
+import { testFirebaseConnection } from '../utils/firebaseTest';
+import * as dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config({ path: '.env.test' });

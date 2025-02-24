@@ -39,7 +39,7 @@
     "eject": "react-scripts eject",
     "verify": "node scripts/verify-deployment.js",
     "monitor": "node scripts/monitor.js",
-    "test:firebase": "cross-env NODE_ENV=test node --loader ts-node/esm src/scripts/testConnection.ts"
+    "test:firebase": "cross-env NODE_ENV=test ts-node src/scripts/testConnection.ts"
   },
   "eslintConfig": {
     "extends": [
