@@ -18,6 +18,16 @@
 .env.production.local
 .netlify
 
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# monitoring
+/logs
+/monitoring
+
+# IDE
+.idea
+.vscode
+*.swp

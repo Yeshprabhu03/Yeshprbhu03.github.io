@@ -4,12 +4,12 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
-import { theme } from './styles/theme';
+import { lightTheme } from './styles/theme';
 import App from './App';
 
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <BrowserRouter>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
       {children}
     </ThemeProvider>
   </BrowserRouter>
