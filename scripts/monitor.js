@@ -1,7 +1,7 @@
 const https = require('https');
 const nodemailer = require('nodemailer');
 
-const SITE_URL = 'https://yeshprabhu03.github.io/Yeshprbhu03.github.io/';
+const SITE_URL = 'https://yeshwanthdayananda.github.io';
 const CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
 function checkSite() {

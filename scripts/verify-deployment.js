@@ -3,11 +3,11 @@ const assert = require('assert');
 
 const checks = [
   {
-    url: 'https://yeshprabhu03.github.io/Yeshprbhu03.github.io/',
+    url: 'https://yeshwanthdayananda.github.io',
     expectedTitle: 'Yeshwanth Dayananda - Product Management Portfolio'
   },
   {
-    url: 'https://yeshprabhu03.github.io/Yeshprbhu03.github.io/#about',
+    url: 'https://yeshwanthdayananda.github.io/#about',
     expectedSection: 'about'
   },
   // Add more checks as needed
