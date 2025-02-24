@@ -2,7 +2,6 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "homepage": "https://yeshwanthdayananda.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -40,7 +39,7 @@
     "eject": "react-scripts eject",
     "verify": "node scripts/verify-deployment.js",
     "monitor": "node scripts/monitor.js",
-    "test:firebase": "cross-env NODE_ENV=test ts-node -r tsconfig-paths/register src/scripts/testConnection.ts"
+    "test:firebase": "cross-env NODE_ENV=test ts-node src/scripts/testConnection.ts"
   },
   "eslintConfig": {
     "extends": [
