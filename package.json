@@ -23,11 +23,12 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/node": "^16.18.86",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "gh-pages": "^6.1.1",
     "ts-node": "^10.9.2",
-    "@types/node": "^16.18.86",
-    "typescript": "^4.9.5",
-    "dotenv": "^16.0.3"
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -38,7 +39,7 @@
     "eject": "react-scripts eject",
     "verify": "node scripts/verify-deployment.js",
     "monitor": "node scripts/monitor.js",
-    "test:firebase": "NODE_ENV=test node --experimental-vm-modules --loader ts-node/esm src/scripts/testConnection.ts"
+    "test:firebase": "cross-env NODE_ENV=test node --loader ts-node/esm src/scripts/testConnection.ts"
   },
   "eslintConfig": {
     "extends": [

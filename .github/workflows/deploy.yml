@@ -44,7 +44,7 @@ jobs:
     - name: Run Firebase Tests
       run: |
         echo "Running Firebase connection tests..."
-        NODE_ENV=test node --experimental-vm-modules --loader ts-node/esm src/scripts/testConnection.ts
+        npm run test:firebase
         if [ $? -eq 0 ]; then
           echo "✅ Firebase tests passed"
         else

@@ -1,8 +1,8 @@
 import { testFirebaseConnection } from '../utils/firebaseTest.js';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 
-// Load test environment variables
-config({ path: '.env.test' });
+// Load environment variables
+dotenv.config({ path: '.env.test' });
 
 async function runTest() {
   console.log('Starting Firebase connection test...');
