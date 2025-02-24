@@ -26,7 +26,8 @@
     "gh-pages": "^6.1.1",
     "ts-node": "^10.9.2",
     "@types/node": "^16.18.86",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "dotenv": "^16.0.3"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -37,7 +38,7 @@
     "eject": "react-scripts eject",
     "verify": "node scripts/verify-deployment.js",
     "monitor": "node scripts/monitor.js",
-    "test:firebase": "NODE_OPTIONS=--experimental-specifier-resolution=node npx ts-node src/scripts/testConnection.ts"
+    "test:firebase": "NODE_ENV=test node --experimental-vm-modules --loader ts-node/esm src/scripts/testConnection.ts"
   },
   "eslintConfig": {
     "extends": [
