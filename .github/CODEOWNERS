@@ -1,0 +1,5 @@
+# Default owners for everything in the repo
+* @Yeshprabhu03
+
+# Workflow files
+.github/workflows/* @Yeshprabhu03 
