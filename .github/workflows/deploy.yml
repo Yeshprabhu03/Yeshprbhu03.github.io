@@ -6,22 +6,18 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  deployments: write
-  statuses: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-    - name: Create deployment
-      uses: chrnorm/deployment-action@v2
-      id: deployment
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        environment: production
-        
     - uses: actions/checkout@v3
 
     - name: Setup Node.js
@@ -38,53 +34,14 @@ jobs:
       env:
         CI: false
 
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: './build'
+
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      id: deploy
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'Deploy to GitHub Pages'
-
-    - name: Update deployment status (success)
-      if: success()
-      uses: chrnorm/deployment-status@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        environment-url: https://yeshprabhu03.github.io
-        state: "success"
-        deployment-id: ${{ steps.deployment.outputs.deployment_id }}
-
-    - name: Update deployment status (failure)
-      if: failure()
-      uses: chrnorm/deployment-status@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        state: "failure"
-        deployment-id: ${{ steps.deployment.outputs.deployment_id }}
-
-    - name: Notify on success
-      if: success()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number || 1,
-            body: '🚀 Deployment successful! Site is live at https://yeshprabhu03.github.io'
-          })
-
-    - name: Notify on failure
-      if: failure()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number || 1,
-            body: '❌ Deployment failed. Please check the Actions tab for details.'
-          }) 
+      id: deployment
+      uses: actions/deploy-pages@v2 
